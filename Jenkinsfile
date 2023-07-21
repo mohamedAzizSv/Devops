@@ -50,20 +50,12 @@ pipeline {
 
 
         stage("SonarQube Analysis") {
-            environment {
-                scannerHome = tool "${SONARSCANNER}"
-            }
+           
             steps {
-                withSonarQubeEnv("${SONARSERVER}"){
-                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=devOPS \
-                    -Dsonar.projectName=devOPS \
-                    -Dsonar.projectVersion=1.0 \
-                    -Dsonar.sources=src/ \
-                    -Dsonar.java.binaries=target/classes \
-                    -Dsonar.junit.reportsPath=target/surefile-reports/ \
-                    -Dsonar.jacoco.reportPaths=target/jacoco.exec \
-                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-                }
+                script {
+                        sh "mvn  sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1 -Dsonar.projectKey=DevOps"
+                      
+                    }
             }
         }
 
@@ -88,7 +80,7 @@ pipeline {
                         }
                     }
 
-                    
+
         stage('Running the unit test...') {
             steps {
                 sh 'mvn test'
