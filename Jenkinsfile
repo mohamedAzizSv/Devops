@@ -15,7 +15,7 @@ pipeline {
         stage('Pulling from git...') {
             steps {
                 git branch: 'main',
-                        url: 'https://github.com/mohamedAzizSv/Devops'
+                        url: 'https://github.com/TahriMaziz11/devOps'
             }
         }
         
