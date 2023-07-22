@@ -15,7 +15,7 @@ pipeline {
         stage('Pulling from git...') {
             steps {
                 git branch: 'main',
-                        url: 'https://github.com/TahriMaziz11/devOps'
+                        url: 'https://github.com/mohamedAzizSv/Devops'
             }
         }
         
@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        
+
          stage('Deploy') {
            steps {
                 sh 'docker-compose up -d'
@@ -82,7 +82,7 @@ pipeline {
                 nexusArtifactUploader(
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                nexusUrl: '193.95.105.45:8081',
+                nexusUrl: '172.19.19.37:8081',
                 groupId: 'tn.esprit.rh',
                 version: '1.0.0',
                 repository: 'Achat-release',
